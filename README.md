@@ -1,19 +1,40 @@
-# @butter1484/react-native-braintree-dropin-ui
+# react-native-braintree-dropin-ui
 
-> React Native integration of Braintree Drop-in IOS V4 ANDROID V3 (Apple Pay &Google Pay Enabled)
+> React Native integration of Braintree Drop-in for IOS & ANDROID (Apple Pay, Google Pay, Paypal, Venmo, Credit Card)
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/wgltony/react-native-braintree-dropin-ui/master/node_modules/iphone.png" width="250">
+<img src="https://raw.githubusercontent.com/wgltony/react-native-braintree-dropin-ui/master/node_modules/android.png" width="250">
+</p>
 
 ## Getting started
 
+For React Native versions >= 0.60
+
+IOS
 ```bash
-npm install @butter1484/react-native-braintree-dropin-ui --save
+npm install react-native-braintree-dropin-ui --save
+
+cd ./ios
+pod install
 ```
 
+Android
+```bash
+npm install react-native-braintree-dropin-ui --save
+```
+
+## Configurate Payment Method(For ALL RN VERSIONS)
+See Braintree's documentation, [Apple Pay][8], [Google Pay][9], [Paypal][10], [Venmo][11]
+Once you have finished setting up all the configurations, it will shows in the dropin UI.
+
+
+For React Native versions < 0.60
 ### Mostly automatic installation
 
 ```bash
-react-native link @butter1484/react-native-braintree-dropin-ui
+react-native link react-native-braintree-dropin-ui
 ```
-Note: Don't run the above command when using React Native versions > 0.60, autolinking will link the package.
 
 #### iOS specific
 
@@ -32,20 +53,20 @@ pod 'CardIO'
 When using React Native versions < 0.60, the following must also be added to your `Podfile`:
 
 ```
-pod 'Braintree'	
+pod 'Braintree' 
 
 pod 'BraintreeDropIn'
 
- # comment the next line to disable Apple pay	
+ # comment the next line to disable Apple pay 
 pod 'Braintree/Apple-Pay'
 
- # comment the next line to disable PayPal	
-pod 'Braintree/PayPal'	
+ # comment the next line to disable PayPal  
+pod 'Braintree/PayPal'  
 
- # comment the next line to disable Venmo	
-pod 'Braintree/Venmo'	
+ # comment the next line to disable Venmo 
+pod 'Braintree/Venmo' 
 
- # Data collector for Braintree Advanced Fraud Tools 	
+ # Data collector for Braintree Advanced Fraud Tools  
 pod 'Braintree/DataCollector'
 ```
 
@@ -207,12 +228,12 @@ For the API, see the [Flow typings][5].
 ### Basic
 
 ```javascript
-import BraintreeDropIn from '@butter1484/react-native-braintree-dropin-ui';
+import BraintreeDropIn from 'react-native-braintree-dropin-ui';
 
 BraintreeDropIn.show({
-	clientToken: 'token',
+  clientToken: 'token',
   merchantIdentifier: 'applePayMerchantIdentifier',
-  googleMerchantId: 'googlePayMerchantId',
+  googlePayMerchantId: 'googlePayMerchantId',
   countryCode: 'US',    //apple pay setting
   currencyCode: 'USD',   //apple pay setting
   merchantName: 'Your Merchant Name for Apple Pay',
@@ -220,6 +241,7 @@ BraintreeDropIn.show({
   googlePay: true,
   applePay: true,
   vaultManager: true,
+  darkTheme: true,
 })
 .then(result => console.log(result))
 .catch((error) => {
@@ -234,7 +256,7 @@ BraintreeDropIn.show({
 ### 3D Secure
 
 ```javascript
-import BraintreeDropIn from '@butter1484/react-native-braintree-dropin-ui';
+import BraintreeDropIn from 'react-native-braintree-dropin-ui';
 
 BraintreeDropIn.show({
   clientToken: 'token',
@@ -242,7 +264,7 @@ BraintreeDropIn.show({
     amount: 1.0,
   },
   merchantIdentifier: 'applePayMerchantIdentifier',
-  googleMerchantId: 'googlePayMerchantId',
+  googlePayMerchantId: 'googlePayMerchantId',
   countryCode: 'US',    //apple pay setting
   currencyCode: 'USD',   //apple pay setting
   merchantName: 'Your Merchant Name for Apple Pay',
@@ -250,6 +272,7 @@ BraintreeDropIn.show({
   googlePay: true,
   applePay: true,
   vaultManager: true,
+  darkTheme: true,
 })
 .then(result => console.log(result))
 .catch((error) => {
@@ -262,10 +285,14 @@ BraintreeDropIn.show({
 });
 ```
 
-[1]:	http://guides.cocoapods.org/using/using-cocoapods.html
-[2]:	https://github.com/braintree/braintree-ios-drop-in
-[3]:	https://github.com/braintree/braintree-android-drop-in
-[4]:	https://developers.braintreepayments.com/guides/client-sdk/setup/android/v2#browser-switch-setup
-[5]:	./index.js.flow
+[1]:  http://guides.cocoapods.org/using/using-cocoapods.html
+[2]:  https://github.com/braintree/braintree-ios-drop-in
+[3]:  https://github.com/braintree/braintree-android-drop-in
+[4]:  https://developers.braintreepayments.com/guides/client-sdk/setup/android/v2#browser-switch-setup
+[5]:  ./index.js.flow
 [6]:  https://developers.braintreepayments.com/guides/apple-pay/configuration/ios/v4
 [7]:  https://articles.braintreepayments.com/guides/payment-methods/apple-pay#compatibility
+[8]:  https://developers.braintreepayments.com/guides/apple-pay/overview
+[9]:  https://developers.braintreepayments.com/guides/google-pay/overview
+[10]: https://developers.braintreepayments.com/guides/paypal/overview/ios/v4
+[11]: https://developers.braintreepayments.com/guides/venmo/overview
