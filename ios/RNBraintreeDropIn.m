@@ -1,4 +1,5 @@
 #import "RNBraintreeDropIn.h"
+#import <React/RCTUtils.h>
 
 @implementation RNBraintreeDropIn
 
@@ -10,6 +11,11 @@ RCT_EXPORT_MODULE(RNBraintreeDropIn)
 
 RCT_EXPORT_METHOD(show:(NSDictionary*)options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
+
+    if([options[@"darkTheme"] boolValue]){
+        [BTUIKAppearance darkTheme];
+    }
+
     self.resolve = resolve;
     self.reject = reject;
     self.applePayAuthorized = NO;
@@ -91,15 +97,14 @@ RCT_EXPORT_METHOD(show:(NSDictionary*)options resolver:(RCTPromiseResolveBlock)r
                         reject(@"3DSECURE_NOT_ABLE_TO_SHIFT_LIABILITY", @"3D Secure liability cannot be shifted", nil);
                     } else if (!cardNonce.threeDSecureInfo.liabilityShifted && cardNonce.threeDSecureInfo.wasVerified) {
                         reject(@"3DSECURE_LIABILITY_NOT_SHIFTED", @"3D Secure liability was not shifted", nil);
-                    } else if(result.paymentMethod == nil && result.paymentOptionType == 18){ //Apple Pay
-                        UIViewController *ctrl = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
-                        [ctrl presentViewController:self.viewController animated:YES completion:nil];
                     } else{
                         [[self class] resolvePayment:result deviceData:self.deviceDataCollector resolver:resolve];
                     }
-                } else if(result.paymentMethod == nil && result.paymentOptionType == 18){ //Apple Pay
-                    UIViewController *ctrl = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
-                    [ctrl presentViewController:self.viewController animated:YES completion:nil];
+                } else if(result.paymentMethod == nil && (result.paymentOptionType == 16 || result.paymentOptionType == 18)){ //Apple Pay
+                    // UIViewController *ctrl = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+                    // [ctrl presentViewController:self.viewController animated:YES completion:nil];
+                    UIViewController *rootViewController = RCTPresentedViewController();
+                    [rootViewController presentViewController:self.viewController animated:YES completion:nil];
                 } else{
                     [[self class] resolvePayment:result deviceData:self.deviceDataCollector resolver:resolve];
                 }
