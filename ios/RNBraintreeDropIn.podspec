@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.description  = <<-DESC
                   RNBraintreeDropIn
                    DESC
-  s.homepage     = "https://github.com/bamlab/react-native-braintree-payments-drop-in"
+  s.homepage     = "https://github.com/BradyShober/react-native-braintree-dropin-ui"
   s.license      = "MIT"
   # s.license      = { :type => "MIT", :file => "../LICENSE" }
   s.author             = { "author" => "lagrange.louis@gmail.com" }
@@ -19,4 +19,5 @@ Pod::Spec.new do |s|
   s.dependency    'Braintree/DataCollector'
   s.dependency    'Braintree/Apple-Pay'
   s.dependency    'Braintree/Venmo'
+  s.dependency    'Braintree/PaymentFlow'
 end
