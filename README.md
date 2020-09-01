@@ -1,4 +1,4 @@
-# react-native-braintree-dropin-ui
+# @butter1484/react-native-braintree-dropin-ui
 
 > React Native integration of Braintree Drop-in for IOS & ANDROID (Apple Pay, Google Pay, Paypal, Venmo, Credit Card)
 
@@ -13,7 +13,7 @@ For React Native versions >= 0.60
 
 IOS
 ```bash
-npm install react-native-braintree-dropin-ui --save
+npm install @butter1484/react-native-braintree-dropin-ui --save
 
 cd ./ios
 pod install
@@ -21,7 +21,7 @@ pod install
 
 Android
 ```bash
-npm install react-native-braintree-dropin-ui --save
+npm install @butter1484/react-native-braintree-dropin-ui --save
 ```
 
 ## Configurate Payment Method(For ALL RN VERSIONS)
@@ -33,7 +33,7 @@ For React Native versions < 0.60
 ### Mostly automatic installation
 
 ```bash
-react-native link react-native-braintree-dropin-ui
+react-native link @butter1484/react-native-braintree-dropin-ui
 ```
 
 #### iOS specific
@@ -239,7 +239,7 @@ For the API, see the [Flow typings][5].
 ### Basic
 
 ```javascript
-import BraintreeDropIn from 'react-native-braintree-dropin-ui';
+import BraintreeDropIn from '@butter1484/react-native-braintree-dropin-ui';
 
 BraintreeDropIn.show({
   clientToken: 'token',
@@ -268,7 +268,7 @@ BraintreeDropIn.show({
 ### 3D Secure
 
 ```javascript
-import BraintreeDropIn from 'react-native-braintree-dropin-ui';
+import BraintreeDropIn from '@butter1484/react-native-braintree-dropin-ui';
 
 BraintreeDropIn.show({
   clientToken: 'token',
